@@ -13,6 +13,7 @@
   "temperature" : "Temperature",
   "humidity" : "Humidity",
   "wind_speed" : "Wind Speed",
+  "pressure" : "Pressure",
   "aqi_index" : "Live AQI Index",
   "good" : "Good",
   "moderate" : "Moderate",
@@ -22,6 +23,7 @@
   "hazardous" :"Hazardous",
   "settings" :"Settings",
   "skip" :"Skip",
-  "done" :"Done"
+  "done" :"Done",
+  "about" : "About"
 
 }

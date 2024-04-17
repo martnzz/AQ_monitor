@@ -1,19 +1,18 @@
-import 'package:aq_monitor/features/aq_feature/presentation/pages/navigation_drawer.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-
+import 'package:easy_localization/easy_localization.dart';
+import 'package:aq_monitor/features/aq_feature/presentation/pages/navigation_drawer.dart';
 import '../../domain/entities/aq_item.dart';
+import '../widgets/aqi_color.dart';
 import '../widgets/live_aqi_index.dart';
 
 class AqInformationPage extends StatelessWidget {
   final Item aqItem;
 
-  const AqInformationPage({super.key, required this.aqItem});
+  const AqInformationPage({Key? key, required this.aqItem});
 
   @override
   Widget build(BuildContext context) {
-
-    String dateString= aqItem.data!.current.weather.ts;
+    String dateString = aqItem.data!.current.weather.ts;
     List<String> parts = dateString.split('T');
     String datePart = parts[0];
     String timePart = parts[1].split('.')[0];
@@ -24,23 +23,77 @@ class AqInformationPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(aqItem.data!.city),
-        actions: [IconButton(onPressed: (){ Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => const NavigationDrawerWidget()));}, icon: const Icon(Icons.menu))],
+        backgroundColor: getPollutionColor(aqItem.data!.current.pollution.aqius),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const NavigationDrawerWidget(),
+              ));
+            },
+            icon: const Icon(Icons.menu),
+          )
+        ],
       ),
-      body: Center(
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(aqItem.data!.country),
-            Text(aqItem.data!.state),
-            Text(formattedDate),
+            Text(
+              aqItem.data!.country,
+              style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8.0),
+            Text(
+              aqItem.data!.state,
+              style: const TextStyle(fontSize: 16.0),
+            ),
+            const SizedBox(height: 8.0),
+            Text(
+              formattedDate,
+              style: const TextStyle(fontSize: 16.0),
+            ),
+            const SizedBox(height: 16.0),
             LiveAqiIndexText(
               index: aqItem.data!.current.pollution.aqius,
             ),
-            Text(aqItem.data!.current.weather.pr.toString()),
-            Text('${"temperature".tr()}: ${aqItem.data!.current.weather.tp} C'),
-            Text('${"humidity".tr()}: ${aqItem.data!.current.weather.hu} %'),
-            Text('${"wind_speed".tr()}: ${aqItem.data!.current.weather.ws} (m/s)'),
-            Image.asset('assets/images/$weatherIcon.png'),
+            const SizedBox(height: 16.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '${"pressure".tr()}: ${aqItem.data!.current.weather.pr}',
+                  style: const TextStyle(fontSize: 16.0),
+                ),
+                Text(
+                  '${"temperature".tr()}: ${aqItem.data!.current.weather.tp}°C',
+                  style: const TextStyle(fontSize: 16.0),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '${"humidity".tr()}: ${aqItem.data!.current.weather.hu}%',
+                  style: const TextStyle(fontSize: 16.0),
+                ),
+                Text(
+                  '${"wind_speed".tr()}: ${aqItem.data!.current.weather.ws} m/s',
+                  style: const TextStyle(fontSize: 16.0),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16.0),
+            Center(
+              child: Image.asset(
+                'assets/images/$weatherIcon.png',
+                width: 300,
+                height: 300,
+              ),
+            ),
           ],
         ),
       ),

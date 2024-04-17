@@ -13,6 +13,7 @@
   "temperature" : "Hőmérséklet",
   "humidity" : "Páratartalom",
   "wind_speed" : "Szélsebesség",
+  "pressure" : "Nyomás",
   "aqi_index" : "Élő AQI Index",
   "good" : "Jó",
   "moderate" : "Közepes",
@@ -22,7 +23,8 @@
   "hazardous" :"Veszélyes",
   "settings" :"Beállítás",
   "skip" :"Kihagyás",
-  "done" :"Kész"
+  "done" :"Kész",
+  "about" : "Az appról"
 
 
 }

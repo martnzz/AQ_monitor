@@ -1,7 +1,11 @@
 import 'package:aq_monitor/core/network/network_info.dart';
 import 'package:aq_monitor/features/aq_feature/data/datasource/get_aq_item_data_source.dart';
 import 'package:aq_monitor/features/aq_feature/data/repositories/aq_item_repository_impl.dart';
-import 'package:aq_monitor/features/aq_feature/domain/usecases/get_aq_item.dart';
+import 'package:aq_monitor/features/aq_feature/domain/usecases/get_cities.dart';
+import 'package:aq_monitor/features/aq_feature/domain/usecases/get_closest_aq_item.dart';
+import 'package:aq_monitor/features/aq_feature/domain/usecases/get_countries.dart';
+import 'package:aq_monitor/features/aq_feature/domain/usecases/get_specified_aq_item.dart';
+import 'package:aq_monitor/features/aq_feature/domain/usecases/get_states.dart';
 import 'package:aq_monitor/features/aq_feature/presentation/bloc/aq_items_bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
@@ -13,7 +17,7 @@ final sl = GetIt.instance;
 
 Future<void> init() async {
   // bloc
-  sl.registerFactory(() => AqItemsBloc(getLocalAqItems: sl()));
+  sl.registerFactory(() => AqItemsBloc(getLocalAqItems: sl(), getSpecifiedAqItem: sl(), getCountries: sl(), getStates: sl(), getCities: sl()));
 
   // repository
   sl.registerLazySingleton<AqItemRepository>(
@@ -22,6 +26,10 @@ Future<void> init() async {
 
   // use case
   sl.registerLazySingleton(() => GetClosestAqItem(sl()));
+  sl.registerLazySingleton(() => GetCountries(sl()));
+  sl.registerLazySingleton(() => GetStates(sl()));
+  sl.registerLazySingleton(() => GetCities(sl()));
+  sl.registerLazySingleton(() => GetSpecifiedAqItem(sl()));
 
   // data source
   sl.registerLazySingleton<GetAqItemDataSource>(

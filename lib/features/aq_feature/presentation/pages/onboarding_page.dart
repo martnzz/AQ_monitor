@@ -1,6 +1,10 @@
 import 'package:aq_monitor/features/aq_feature/presentation/pages/setup_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+
+import '../../../../core/injection_container.dart';
+import '../bloc/aq_items_bloc.dart';
 
 class OnBoardingPage extends StatelessWidget {
   const OnBoardingPage({super.key});
@@ -20,8 +24,11 @@ class OnBoardingPage extends StatelessWidget {
       skip: const Text("Skip"),
       done: const Text("Done"),
       onDone: () {
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => const SetupPage()));
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => BlocProvider(
+                create: (context) =>
+                    sl<AqItemsBloc>()..add(GetCountriesEvent()),
+                child: const SetupPage())));
       },
     );
   }

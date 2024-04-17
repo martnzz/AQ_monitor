@@ -5,7 +5,6 @@ import 'package:aq_monitor/features/aq_feature/presentation/widgets/setup_contro
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/injection_container.dart';
 
 class SetupPage extends StatelessWidget {
   const SetupPage({super.key});
@@ -14,27 +13,29 @@ class SetupPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: BlocProvider(
-        create: (context) => sl<AqItemsBloc>(),
-        child: BlocListener<AqItemsBloc, AqItemsState>(
+      body: BlocListener<AqItemsBloc, AqItemsState>(
           listener: (context, state) {
             if (state is Loading) {
               const CircularProgressIndicator();
             }
-            if (state is Loaded) {
+            else if (state is Loaded) {
              Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  AqInformationPage(aqItem: state.item!,)));
             }
-            if (state is Error) {
+            else if (state is Error) {
               showInSnackBar(state.message, context);
             }
           },
           child: BlocBuilder<AqItemsBloc, AqItemsState>(
             builder: (context, state) {
+              if(state is Loading){
+                return const CircularProgressIndicator();
+              }
+
               return const SetupControls();
             },
           ),
         ),
-      ),
+
     );
   }
 }

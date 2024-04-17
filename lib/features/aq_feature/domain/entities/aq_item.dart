@@ -1,6 +1,6 @@
 class Item {
   final String status;
-  final Data data;
+  final Data? data;
 
   const Item({
     required this.status,

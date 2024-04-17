@@ -19,6 +19,23 @@ class Loaded extends AqItemsState {
   @override
   List<Object> get props => [item!];
 }
+class CountriesLoaded extends AqItemsState{
+  final CountryItem? country;
+
+  const CountriesLoaded({required this.country});
+}
+
+class StatesLoaded extends AqItemsState{
+  final StateItem? state;
+
+  const StatesLoaded({required this.state});
+}
+
+class CitiesLoaded extends AqItemsState{
+  final CityItem? city;
+
+  const CitiesLoaded({required this.city});
+}
 
 class Error extends AqItemsState {
   final String message;

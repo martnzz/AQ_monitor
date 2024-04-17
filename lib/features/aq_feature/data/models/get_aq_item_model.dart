@@ -3,9 +3,12 @@ import 'package:aq_monitor/features/aq_feature/domain/entities/aq_item.dart';
 class GetAqItemModel extends Item{
   const GetAqItemModel({required super.status, required super.data});
 
-  static GetAqItemModel fromJson(Map<String,dynamic>jsonData){
+  static GetAqItemModel? fromJson(Map<String,dynamic>jsonData){
     final String status=jsonData['status'];
-
+    if(status == 'fail'){
+      return null;
+    }
+else{
     final dynamic locationData = jsonData['data']['location'];
     final Location aqLocation = Location(
       type: locationData['type'],
@@ -45,5 +48,5 @@ class GetAqItemModel extends Item{
 
     final item = GetAqItemModel(status: status, data: aqData);
     return item;
-  }
+  }}
 }

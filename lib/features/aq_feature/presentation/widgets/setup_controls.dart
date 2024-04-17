@@ -2,8 +2,6 @@ import 'package:aq_monitor/features/aq_feature/presentation/bloc/aq_items_bloc.d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/injection_container.dart';
-
 class SetupControls extends StatefulWidget {
   const SetupControls({super.key});
 
@@ -12,9 +10,13 @@ class SetupControls extends StatefulWidget {
 }
 
 class _SetupControlsState extends State<SetupControls> {
+  final countryController = TextEditingController();
+  final stateController = TextEditingController();
   final cityController = TextEditingController();
+  String? inputCountry;
+  String? inputState;
   String? inputCity;
-
+  bool isButtonDisabled = true;
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +25,34 @@ class _SetupControlsState extends State<SetupControls> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TextField(
+          controller: countryController,
+          textInputAction: TextInputAction.next,
+          decoration: const InputDecoration(labelText: 'Country:'),
+          onChanged: (value) {
+            inputCountry = value;
+            checkButtonState();
+          },
+        ),
+        TextField(
+          controller: stateController,
+          textInputAction: TextInputAction.next,
+          decoration: const InputDecoration(labelText: 'State:'),
+          onChanged: (value) {
+            inputState= value;
+            checkButtonState();
+          },
+        ),
+        TextField(
           controller: cityController,
           textInputAction: TextInputAction.next,
-          decoration: const InputDecoration(labelText: 'City'),
-          onChanged: (value){
-            inputCity=value;
+          decoration: const InputDecoration(labelText: 'City:'),
+          onChanged: (value) {
+            inputCity = value;
+            checkButtonState();
           },
         ),
         ElevatedButton(
-          onPressed: (){},
+          onPressed: dispatchSpecifiedCity,
           style: ElevatedButton.styleFrom(
             minimumSize: const Size.fromHeight(50),
             backgroundColor: Theme.of(context).colorScheme.primary,
@@ -57,8 +78,19 @@ class _SetupControlsState extends State<SetupControls> {
       ],
     );
   }
+
   void dispatchClosestCity() {
     BlocProvider.of<AqItemsBloc>(context).add(GetClosestAqItemEvent());
+  }
 
+  void dispatchSpecifiedCity() {
+    BlocProvider.of<AqItemsBloc>(context)
+        .add(GetSpecifiedAqItemEvent(city: inputCity!, country: inputCountry!, state: inputState!));
+  }
+  void checkButtonState() {
+    setState(() {
+      isButtonDisabled =
+          (inputCountry ?? '').isEmpty || (inputState ?? '').isEmpty || (inputCity?? '').isEmpty;
+    });
   }
 }

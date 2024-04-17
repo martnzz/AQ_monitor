@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SetupControls extends StatefulWidget {
-  const SetupControls({super.key});
+  const SetupControls({Key? key}) : super(key: key);
 
   @override
   State<SetupControls> createState() => _SetupControlsState();
@@ -21,62 +21,73 @@ class _SetupControlsState extends State<SetupControls> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        TextField(
-          controller: countryController,
-          textInputAction: TextInputAction.next,
-          decoration:  InputDecoration(labelText: 'country'.tr()),
-          onChanged: (value) {
-            inputCountry = value;
-            checkButtonState();
-          },
-        ),
-        TextField(
-          controller: stateController,
-          textInputAction: TextInputAction.next,
-          decoration:  InputDecoration(labelText: 'state'.tr()),
-          onChanged: (value) {
-            inputState= value;
-            checkButtonState();
-          },
-        ),
-        TextField(
-          controller: cityController,
-          textInputAction: TextInputAction.next,
-          decoration:  InputDecoration(labelText: 'city'.tr()),
-          onChanged: (value) {
-            inputCity = value;
-            checkButtonState();
-          },
-        ),
-        ElevatedButton(
-          onPressed: dispatchSpecifiedCity,
-          style: ElevatedButton.styleFrom(
-            minimumSize: const Size.fromHeight(50),
-            backgroundColor: Theme.of(context).colorScheme.primary,
-            foregroundColor: Theme.of(context).colorScheme.onPrimary,
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          TextField(
+            controller: countryController,
+            textInputAction: TextInputAction.next,
+            decoration: InputDecoration(
+              labelText: 'country'.tr(),
+              border: const OutlineInputBorder(),
+            ),
+            onChanged: (value) {
+              inputCountry = value;
+              checkButtonState();
+            },
           ),
-          child:  Text(
-            'specified_city'.tr(),
-            style: const TextStyle(fontSize: 16),
+          const SizedBox(height: 12),
+          TextField(
+            controller: stateController,
+            textInputAction: TextInputAction.next,
+            decoration: InputDecoration(
+              labelText: 'state'.tr(),
+              border: const OutlineInputBorder(),
+            ),
+            onChanged: (value) {
+              inputState = value;
+              checkButtonState();
+            },
           ),
-        ),
-        ElevatedButton(
-          onPressed: dispatchClosestCity,
-          style: ElevatedButton.styleFrom(
-            minimumSize: const Size.fromHeight(50),
-            backgroundColor: Theme.of(context).colorScheme.primary,
-            foregroundColor: Theme.of(context).colorScheme.onPrimary,
+          const SizedBox(height: 12),
+          TextField(
+            controller: cityController,
+            textInputAction: TextInputAction.next,
+            decoration: InputDecoration(
+              labelText: 'city'.tr(),
+              border: const OutlineInputBorder(),
+            ),
+            onChanged: (value) {
+              inputCity = value;
+              checkButtonState();
+            },
           ),
-          child:  Text(
-            'closest_city'.tr(),
-            style: const TextStyle(fontSize: 16),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: isButtonDisabled ? null : dispatchSpecifiedCity,
+            style: ElevatedButton.styleFrom(
+              minimumSize: const Size.fromHeight(50), backgroundColor: Theme.of(context).primaryColor, foregroundColor: Theme.of(context).colorScheme.onPrimary,
+            ),
+            child: Text(
+              'specified_city'.tr(),
+              style: const TextStyle(fontSize: 16),
+            ),
           ),
-        ),
-      ],
+          const SizedBox(height: 12),
+          ElevatedButton(
+            onPressed: dispatchClosestCity,
+            style: ElevatedButton.styleFrom(
+              minimumSize: const Size.fromHeight(50), backgroundColor: Theme.of(context).primaryColor, foregroundColor: Theme.of(context).colorScheme.onPrimary,
+            ),
+            child: Text(
+              'closest_city'.tr(),
+              style: const TextStyle(fontSize: 16),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -85,13 +96,20 @@ class _SetupControlsState extends State<SetupControls> {
   }
 
   void dispatchSpecifiedCity() {
-    BlocProvider.of<AqItemsBloc>(context)
-        .add(GetSpecifiedAqItemEvent(city: inputCity!, country: inputCountry!, state: inputState!));
+    BlocProvider.of<AqItemsBloc>(context).add(
+      GetSpecifiedAqItemEvent(
+        city: inputCity!,
+        country: inputCountry!,
+        state: inputState!,
+      ),
+    );
   }
+
   void checkButtonState() {
     setState(() {
-      isButtonDisabled =
-          (inputCountry ?? '').isEmpty || (inputState ?? '').isEmpty || (inputCity?? '').isEmpty;
+      isButtonDisabled = (inputCountry ?? '').isEmpty ||
+          (inputState ?? '').isEmpty ||
+          (inputCity ?? '').isEmpty;
     });
   }
 }

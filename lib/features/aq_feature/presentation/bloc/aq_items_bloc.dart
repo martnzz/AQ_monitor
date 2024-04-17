@@ -53,7 +53,6 @@ class AqItemsBloc extends Bloc<AqItemsEvent, AqItemsState> {
     on<GetCountriesEvent>((event, emit) async {
       emit(Loading());
       final inputEither = await getCountries(NoParams());
-      print(inputEither);
       inputEither.fold(
           (failure) => emit(Error(message: _mapFailureToMessage(failure).tr())),
           (countryItem) => emit(CountriesLoaded(country: countryItem)));

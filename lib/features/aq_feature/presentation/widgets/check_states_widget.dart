@@ -12,7 +12,7 @@ class CheckStates extends StatelessWidget {
     );
     return AlertDialog(
       title: Text("states".tr()),
-      content: Text('asd'),
+      content: const Text('asd'),
       actions: [okButton],
     );
   }

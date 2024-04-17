@@ -83,6 +83,9 @@ flutter:
     - assets/images/11d.png
     - assets/images/13d.png
     - assets/images/50d.png
+    - assets/images/setup_page.png
+    - assets/images/aqi_info_page.png
+    - assets/images/navigation_drawer_page.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -34,7 +34,6 @@ class SetupPage extends StatelessWidget {
               if (state is Loading) {
                 return const Center(child: CircularProgressIndicator());
               }
-
               return const SetupControls();
             },
           ),

@@ -26,7 +26,6 @@ class GetAqItemRepositoryImpl implements AqItemRepository {
         return Left(NetworkFailure());
       }
     } catch (e) {
-      print(e);
       return Left(ServerFailure());
     }
   }
@@ -45,7 +44,6 @@ class GetAqItemRepositoryImpl implements AqItemRepository {
         return Left(NetworkFailure());
       }
     } catch (e) {
-      print(e);
       return Left(ServerFailure());
     }
   }
@@ -60,7 +58,6 @@ class GetAqItemRepositoryImpl implements AqItemRepository {
         return Left(NetworkFailure());
       }
     } catch (e) {
-      print(e);
       return Left(ServerFailure());
     }
   }
@@ -75,7 +72,6 @@ class GetAqItemRepositoryImpl implements AqItemRepository {
         return Left(NetworkFailure());
       }
     } catch (e) {
-      print(e);
       return Left(ServerFailure());
     }
   }
@@ -90,7 +86,6 @@ class GetAqItemRepositoryImpl implements AqItemRepository {
         return Left(NetworkFailure());
       }
     } catch (e) {
-      print(e);
       return Left(ServerFailure());
     }
   }

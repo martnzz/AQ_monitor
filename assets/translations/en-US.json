@@ -24,6 +24,13 @@
   "settings" :"Settings",
   "skip" :"Skip",
   "done" :"Done",
-  "about" : "About"
+  "about" : "About",
+  "setup_page_title": "Setup Page",
+  "setup_page_body": "Choose city to display the air quality data for, either by manually searching by giving the country, state, and city parameters or by using GPS",
+  "aqi_title": "Air Quality Information",
+  "aqi_body": "Appears after a successful Setup\nDisplays the relevant air quality information \nShows a burger menu button in the top right corner which launches the navigation drawer",
+  "nav_title": "Navigation Drawer",
+  "nav_body": "Settings menu item launches the Setup Page or a similar page with options for choosing the place for air quality data.\nLanguage menu item makes it possible to switch languages on the fly.\nAbout menu item displays a simple dialog with app name, version information and option to check opensource licenses."
+
 
 }

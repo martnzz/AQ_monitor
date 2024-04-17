@@ -8,7 +8,7 @@ import '../widgets/live_aqi_index.dart';
 class AqInformationPage extends StatelessWidget {
   final Item aqItem;
 
-  const AqInformationPage({Key? key, required this.aqItem});
+  const AqInformationPage({super.key, required this.aqItem});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +22,12 @@ class AqInformationPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(aqItem.data!.city),
-        backgroundColor: getPollutionColor(aqItem.data!.current.pollution.aqius),
+        title: Text(
+          aqItem.data!.city,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+        backgroundColor:
+            getPollutionColor(aqItem.data!.current.pollution.aqius),
         actions: [
           IconButton(
             onPressed: () {
@@ -42,17 +46,18 @@ class AqInformationPage extends StatelessWidget {
           children: [
             Text(
               aqItem.data!.country,
-              style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              style:
+                  const TextStyle(fontSize: 21.0, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8.0),
             Text(
               aqItem.data!.state,
-              style: const TextStyle(fontSize: 16.0),
+              style: const TextStyle(fontSize: 18.0),
             ),
             const SizedBox(height: 8.0),
             Text(
               formattedDate,
-              style: const TextStyle(fontSize: 16.0),
+              style: const TextStyle(fontSize: 18.0),
             ),
             const SizedBox(height: 16.0),
             LiveAqiIndexText(
@@ -64,11 +69,11 @@ class AqInformationPage extends StatelessWidget {
               children: [
                 Text(
                   '${"pressure".tr()}: ${aqItem.data!.current.weather.pr}',
-                  style: const TextStyle(fontSize: 16.0),
+                  style: const TextStyle(fontSize: 17.0),
                 ),
                 Text(
                   '${"temperature".tr()}: ${aqItem.data!.current.weather.tp}°C',
-                  style: const TextStyle(fontSize: 16.0),
+                  style: const TextStyle(fontSize: 17.0),
                 ),
               ],
             ),
@@ -76,13 +81,14 @@ class AqInformationPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+
                 Text(
-                  '${"humidity".tr()}: ${aqItem.data!.current.weather.hu}%',
-                  style: const TextStyle(fontSize: 16.0),
+                  '${"humidity".tr()}: ${aqItem.data!.current.weather.hu} %',
+                  style: const TextStyle(fontSize: 17.0),
                 ),
                 Text(
                   '${"wind_speed".tr()}: ${aqItem.data!.current.weather.ws} m/s',
-                  style: const TextStyle(fontSize: 16.0),
+                  style: const TextStyle(fontSize: 17.0),
                 ),
               ],
             ),

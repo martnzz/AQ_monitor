@@ -5,6 +5,7 @@ import 'package:aq_monitor/features/aq_feature/presentation/widgets/setup_contro
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/injection_container.dart';
 
 class SetupPage extends StatelessWidget {
   const SetupPage({super.key});
@@ -13,29 +14,32 @@ class SetupPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: BlocListener<AqItemsBloc, AqItemsState>(
+      body: BlocProvider(
+        create: (context) => sl<AqItemsBloc>(),
+        child: BlocListener<AqItemsBloc, AqItemsState>(
           listener: (context, state) {
             if (state is Loading) {
-              const CircularProgressIndicator();
-            }
-            else if (state is Loaded) {
-             Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  AqInformationPage(aqItem: state.item!,)));
-            }
-            else if (state is Error) {
+              const Center(child: CircularProgressIndicator());
+            } else if (state is Loaded) {
+              Navigator.of(context).pushReplacement( MaterialPageRoute(
+                  builder: (context) => AqInformationPage(
+                        aqItem: state.item!,
+                      )));
+            } else if (state is Error) {
               showInSnackBar(state.message, context);
             }
           },
           child: BlocBuilder<AqItemsBloc, AqItemsState>(
             builder: (context, state) {
-              if(state is Loading){
-                return const CircularProgressIndicator();
+              if (state is Loading) {
+                return const Center(child: CircularProgressIndicator());
               }
 
               return const SetupControls();
             },
           ),
         ),
-
+      ),
     );
   }
 }

@@ -1,0 +1,28 @@
+{
+  "no_connection" : "Nincs kapcsolat!",
+  "data_error": "Nincs adat erről a városról!",
+  "server_error": "Szerver hiba!",
+  "unexpected_error": "Váratlan hiba!",
+  "language": "Nyelv",
+  "loading" :"Betöltés...",
+  "country" : "Ország",
+  "state" : "Állam",
+  "city" : "Város",
+  "closest_city" : "Legközelebbi város",
+  "specified_city" : "Megadott város",
+  "temperature" : "Hőmérséklet",
+  "humidity" : "Páratartalom",
+  "wind_speed" : "Szélsebesség",
+  "aqi_index" : "Élő AQI Index",
+  "good" : "Jó",
+  "moderate" : "Közepes",
+  "sensitive_gr" : "Egészségtelen érzékeny csoportoknak",
+  "unhealthy" : "Egészségtelen",
+  "very_unhealthy" :"Nagyon Egészségtelen",
+  "hazardous" :"Veszélyes",
+  "settings" :"Beállítás",
+  "skip" :"Kihagyás",
+  "done" :"Kész"
+
+
+}

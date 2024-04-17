@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class CheckStates extends StatelessWidget {
@@ -10,7 +11,7 @@ class CheckStates extends StatelessWidget {
       onPressed: () { },
     );
     return AlertDialog(
-      title: const Text('States:'),
+      title: Text("states".tr()),
       content: Text('asd'),
       actions: [okButton],
     );

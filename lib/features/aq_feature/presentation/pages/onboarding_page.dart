@@ -1,4 +1,5 @@
 import 'package:aq_monitor/features/aq_feature/presentation/pages/setup_page.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:introduction_screen/introduction_screen.dart';
@@ -21,14 +22,11 @@ class OnBoardingPage extends StatelessWidget {
       ],
       showSkipButton: true,
       showNextButton: false,
-      skip: const Text("Skip"),
-      done: const Text("Done"),
+      skip:  Text("skip".tr()),
+      done:  Text("done".tr()),
       onDone: () {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => BlocProvider(
-                create: (context) =>
-                    sl<AqItemsBloc>()..add(GetCountriesEvent()),
-                child: const SetupPage())));
+            builder: (context) => const SetupPage()));
       },
     );
   }

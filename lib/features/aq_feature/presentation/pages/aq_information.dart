@@ -1,3 +1,5 @@
+import 'package:aq_monitor/features/aq_feature/presentation/pages/navigation_drawer.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/aq_item.dart';
@@ -22,6 +24,8 @@ class AqInformationPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(aqItem.data!.city),
+        actions: [IconButton(onPressed: (){ Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => const NavigationDrawerWidget()));}, icon: const Icon(Icons.menu))],
       ),
       body: Center(
         child: Column(
@@ -33,9 +37,9 @@ class AqInformationPage extends StatelessWidget {
               index: aqItem.data!.current.pollution.aqius,
             ),
             Text(aqItem.data!.current.weather.pr.toString()),
-            Text('Temperature: ${aqItem.data!.current.weather.tp} C'),
-            Text('Humidity: ${aqItem.data!.current.weather.hu} %'),
-            Text('Wind speed: ${aqItem.data!.current.weather.ws} (m/s)'),
+            Text('${"temperature".tr()}: ${aqItem.data!.current.weather.tp} C'),
+            Text('${"humidity".tr()}: ${aqItem.data!.current.weather.hu} %'),
+            Text('${"wind_speed".tr()}: ${aqItem.data!.current.weather.ws} (m/s)'),
             Image.asset('assets/images/$weatherIcon.png'),
           ],
         ),

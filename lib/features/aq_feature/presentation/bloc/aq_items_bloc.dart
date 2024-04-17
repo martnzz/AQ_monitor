@@ -1,5 +1,6 @@
 import 'package:aq_monitor/features/aq_feature/domain/entities/countries.dart';
 import 'package:aq_monitor/features/aq_feature/domain/usecases/get_countries.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:aq_monitor/core/usecases/usecase.dart';
@@ -34,7 +35,7 @@ class AqItemsBloc extends Bloc<AqItemsEvent, AqItemsState> {
       emit(Loading());
       final inputEither = await getLocalAqItems(NoParams());
       inputEither.fold(
-        (failure) => emit(Error(message: _mapFailureToMessage(failure))),
+        (failure) => emit(Error(message: _mapFailureToMessage(failure).tr())),
         (item) => emit(Loaded(item: item)),
       );
     });
@@ -44,7 +45,7 @@ class AqItemsBloc extends Bloc<AqItemsEvent, AqItemsState> {
       final inputEither = await getSpecifiedAqItem(
           Params(city: event.city, country: event.country, state: event.state));
       inputEither.fold(
-        (failure) => emit(Error(message: _mapFailureToMessage(failure))),
+        (failure) => emit(Error(message: _mapFailureToMessage(failure).tr())),
         (item) => emit(Loaded(item: item)),
       );
     });
@@ -54,7 +55,7 @@ class AqItemsBloc extends Bloc<AqItemsEvent, AqItemsState> {
       final inputEither = await getCountries(NoParams());
       print(inputEither);
       inputEither.fold(
-          (failure) => emit(Error(message: _mapFailureToMessage(failure))),
+          (failure) => emit(Error(message: _mapFailureToMessage(failure).tr())),
           (countryItem) => emit(CountriesLoaded(country: countryItem)));
     });
 
@@ -62,7 +63,7 @@ class AqItemsBloc extends Bloc<AqItemsEvent, AqItemsState> {
       emit(Loading());
       final inputEither = await getStates(StateParams(country: event.country));
       inputEither.fold(
-          (failure) => emit(Error(message: _mapFailureToMessage(failure))),
+          (failure) => emit(Error(message: _mapFailureToMessage(failure).tr())),
           (stateItem) => emit(StatesLoaded(state: stateItem)));
     });
 
@@ -70,7 +71,7 @@ class AqItemsBloc extends Bloc<AqItemsEvent, AqItemsState> {
       emit(Loading());
       final inputEither = await getCities(CityParams(country: event.country, state: event.state));
       inputEither.fold(
-              (failure) => emit(Error(message: _mapFailureToMessage(failure))),
+              (failure) => emit(Error(message: _mapFailureToMessage(failure).tr())),
               (cityItem) => emit(CitiesLoaded(city: cityItem)));
     });
   }

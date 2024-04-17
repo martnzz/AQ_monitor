@@ -1,4 +1,5 @@
 import 'package:aq_monitor/features/aq_feature/presentation/bloc/aq_items_bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,7 +28,7 @@ class _SetupControlsState extends State<SetupControls> {
         TextField(
           controller: countryController,
           textInputAction: TextInputAction.next,
-          decoration: const InputDecoration(labelText: 'Country:'),
+          decoration:  InputDecoration(labelText: 'country'.tr()),
           onChanged: (value) {
             inputCountry = value;
             checkButtonState();
@@ -36,7 +37,7 @@ class _SetupControlsState extends State<SetupControls> {
         TextField(
           controller: stateController,
           textInputAction: TextInputAction.next,
-          decoration: const InputDecoration(labelText: 'State:'),
+          decoration:  InputDecoration(labelText: 'state'.tr()),
           onChanged: (value) {
             inputState= value;
             checkButtonState();
@@ -45,7 +46,7 @@ class _SetupControlsState extends State<SetupControls> {
         TextField(
           controller: cityController,
           textInputAction: TextInputAction.next,
-          decoration: const InputDecoration(labelText: 'City:'),
+          decoration:  InputDecoration(labelText: 'city'.tr()),
           onChanged: (value) {
             inputCity = value;
             checkButtonState();
@@ -58,9 +59,9 @@ class _SetupControlsState extends State<SetupControls> {
             backgroundColor: Theme.of(context).colorScheme.primary,
             foregroundColor: Theme.of(context).colorScheme.onPrimary,
           ),
-          child: const Text(
-            'Specified City',
-            style: TextStyle(fontSize: 16),
+          child:  Text(
+            'specified_city'.tr(),
+            style: const TextStyle(fontSize: 16),
           ),
         ),
         ElevatedButton(
@@ -70,9 +71,9 @@ class _SetupControlsState extends State<SetupControls> {
             backgroundColor: Theme.of(context).colorScheme.primary,
             foregroundColor: Theme.of(context).colorScheme.onPrimary,
           ),
-          child: const Text(
-            'Closest City',
-            style: TextStyle(fontSize: 16),
+          child:  Text(
+            'closest_city'.tr(),
+            style: const TextStyle(fontSize: 16),
           ),
         ),
       ],

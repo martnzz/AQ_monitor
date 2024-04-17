@@ -1,5 +1,4 @@
 import 'package:aq_monitor/features/aq_feature/domain/entities/city.dart';
-import 'package:aq_monitor/features/aq_feature/domain/entities/state.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 

@@ -1,0 +1,27 @@
+{
+  "no_connection" : "No connection!",
+  "data_error": "No Data For This City!",
+  "server_error": "Server Error!",
+  "unexpected_error": "Unexpected Error!",
+  "language": "Language",
+  "loading" :"Loading...",
+  "country" : "Country",
+  "state" : "State",
+  "city" : "City",
+  "closest_city" : "Closest City",
+  "specified_city" : "Specified City",
+  "temperature" : "Temperature",
+  "humidity" : "Humidity",
+  "wind_speed" : "Wind Speed",
+  "aqi_index" : "Live AQI Index",
+  "good" : "Good",
+  "moderate" : "Moderate",
+  "sensitive_gr" : "Unhealthy for sensitive groups",
+  "unhealthy" : "Unhealthy",
+  "very_unhealthy" :"Very Unhealthy",
+  "hazardous" :"Hazardous",
+  "settings" :"Settings",
+  "skip" :"Skip",
+  "done" :"Done"
+
+}

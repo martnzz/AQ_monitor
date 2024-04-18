@@ -6,7 +6,6 @@ class CityItem {
     required this.status,
     required this.data,
   });
-
 }
 
 class Cities {
@@ -15,5 +14,4 @@ class Cities {
   Cities({
     required this.city,
   });
-
 }

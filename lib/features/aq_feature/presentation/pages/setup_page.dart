@@ -13,7 +13,9 @@ class SetupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+      ),
       body: BlocProvider(
         create: (context) => sl<AqItemsBloc>(),
         child: BlocListener<AqItemsBloc, AqItemsState>(
@@ -21,7 +23,7 @@ class SetupPage extends StatelessWidget {
             if (state is Loading) {
               const Center(child: CircularProgressIndicator());
             } else if (state is Loaded) {
-              Navigator.of(context).pushReplacement( MaterialPageRoute(
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => AqInformationPage(
                         aqItem: state.item!,
                       )));

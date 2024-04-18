@@ -2,9 +2,12 @@ import 'package:aq_monitor/features/aq_feature/presentation/bloc/aq_items_bloc.d
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
+
+import '../../../../core/notification.dart';
 
 class SetupControls extends StatefulWidget {
-  const SetupControls({Key? key}) : super(key: key);
+  const SetupControls({super.key});
 
   @override
   State<SetupControls> createState() => _SetupControlsState();
@@ -68,7 +71,9 @@ class _SetupControlsState extends State<SetupControls> {
           ElevatedButton(
             onPressed: isButtonDisabled ? null : dispatchSpecifiedCity,
             style: ElevatedButton.styleFrom(
-              minimumSize: const Size.fromHeight(50), backgroundColor: Theme.of(context).primaryColor, foregroundColor: Theme.of(context).colorScheme.onPrimary,
+              minimumSize: const Size.fromHeight(50),
+              backgroundColor: Theme.of(context).primaryColor,
+              foregroundColor: Theme.of(context).colorScheme.onPrimary,
             ),
             child: Text(
               'specified_city'.tr(),
@@ -79,20 +84,44 @@ class _SetupControlsState extends State<SetupControls> {
           ElevatedButton(
             onPressed: dispatchClosestCity,
             style: ElevatedButton.styleFrom(
-              minimumSize: const Size.fromHeight(50), backgroundColor: Theme.of(context).primaryColor, foregroundColor: Theme.of(context).colorScheme.onPrimary,
+              minimumSize: const Size.fromHeight(50),
+              backgroundColor: Theme.of(context).primaryColor,
+              foregroundColor: Theme.of(context).colorScheme.onPrimary,
             ),
             child: Text(
               'closest_city'.tr(),
               style: const TextStyle(fontSize: 16),
             ),
           ),
+          ElevatedButton(
+              onPressed: () {
+                NotificationService()
+                    .showNotification(title: 'ASD', body: 'AAAA');
+              },
+              child: const Text('Noti'))
         ],
       ),
     );
   }
 
-  void dispatchClosestCity() {
-    BlocProvider.of<AqItemsBloc>(context).add(GetClosestAqItemEvent());
+  Future<void> dispatchClosestCity() async {
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+    }
+
+    if (permission == LocationPermission.whileInUse ||
+        permission == LocationPermission.always) {
+      try {
+        Position position = await Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.high);
+
+        BlocProvider.of<AqItemsBloc>(context).add(GetClosestAqItemEvent(
+            lat: position.latitude, lon: position.longitude));
+      } catch (e) {
+        throw Exception;
+      }
+    }
   }
 
   void dispatchSpecifiedCity() {

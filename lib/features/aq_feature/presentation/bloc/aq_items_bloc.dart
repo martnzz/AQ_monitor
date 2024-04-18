@@ -33,7 +33,8 @@ class AqItemsBloc extends Bloc<AqItemsEvent, AqItemsState> {
   }) : super(Empty()) {
     on<GetClosestAqItemEvent>((event, emit) async {
       emit(Loading());
-      final inputEither = await getLocalAqItems(NoParams());
+      final inputEither =
+          await getLocalAqItems(CloseParams(lat: event.lat, lon: event.lon));
       inputEither.fold(
         (failure) => emit(Error(message: _mapFailureToMessage(failure).tr())),
         (item) => emit(Loaded(item: item)),
@@ -68,10 +69,11 @@ class AqItemsBloc extends Bloc<AqItemsEvent, AqItemsState> {
 
     on<GetCitiesEvent>((event, emit) async {
       emit(Loading());
-      final inputEither = await getCities(CityParams(country: event.country, state: event.state));
+      final inputEither = await getCities(
+          CityParams(country: event.country, state: event.state));
       inputEither.fold(
-              (failure) => emit(Error(message: _mapFailureToMessage(failure).tr())),
-              (cityItem) => emit(CitiesLoaded(city: cityItem)));
+          (failure) => emit(Error(message: _mapFailureToMessage(failure).tr())),
+          (cityItem) => emit(CitiesLoaded(city: cityItem)));
     });
   }
   String _mapFailureToMessage(Failure failure) {

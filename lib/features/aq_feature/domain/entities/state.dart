@@ -6,7 +6,6 @@ class StateItem {
     required this.status,
     required this.data,
   });
-
 }
 
 class States {
@@ -15,5 +14,4 @@ class States {
   States({
     required this.state,
   });
-
 }

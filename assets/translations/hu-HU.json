@@ -30,5 +30,6 @@
   "aqi_title": "Levegőminőségi információk",
   "aqi_body": "Sikeres beállítás után jelenik meg\nMegjeleníti a megfelelő levegőminőségi információkat\nMegjeleníti a burger menü gombját a jobb felső sarokban, amely elindítja a navigációs fiókot",
   "nav_title": "Navigációs oldal",
-  "nav_body": "A Beállítások menüpont elindítja a Beállítási oldalt vagy egy hasonló oldalt, amelyen lehetőség nyílik a levegőminőségi adatok helyének kiválasztására.\nA Nyelv menüpont lehetővé teszi a nyelvek menet közbeni váltását.\nA Névjegy menüpont egy egyszerű párbeszédpanelt jelenít meg az alkalmazás nevével, a verzióinformációkkal és a nyílt forráskódú licencek ellenőrzésének lehetőségével."
+  "nav_body": "A Beállítások menüpont elindítja a Beállítási oldalt vagy egy hasonló oldalt, amelyen lehetőség nyílik a levegőminőségi adatok helyének kiválasztására.\nA Nyelv menüpont lehetővé teszi a nyelvek menet közbeni váltását.\nA Névjegy menüpont egy egyszerű párbeszédpanelt jelenít meg az alkalmazás nevével, a verzióinformációkkal és a nyílt forráskódú licencek ellenőrzésének lehetőségével.",
+ "version" : "Verzió"
 }

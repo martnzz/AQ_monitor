@@ -17,7 +17,12 @@ final sl = GetIt.instance;
 
 Future<void> init() async {
   // bloc
-  sl.registerFactory(() => AqItemsBloc(getLocalAqItems: sl(), getSpecifiedAqItem: sl(), getCountries: sl(), getStates: sl(), getCities: sl()));
+  sl.registerFactory(() => AqItemsBloc(
+      getLocalAqItems: sl(),
+      getSpecifiedAqItem: sl(),
+      getCountries: sl(),
+      getStates: sl(),
+      getCities: sl()));
 
   // repository
   sl.registerLazySingleton<AqItemRepository>(

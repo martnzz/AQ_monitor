@@ -28,7 +28,9 @@ class OnBoardingPage extends StatelessWidget {
           PageViewModel(
             title: "aqi_title".tr(),
             body: "aqi_body".tr(),
-            image: Image.asset("assets/images/aqi_info_page.png",),
+            image: Image.asset(
+              "assets/images/aqi_info_page.png",
+            ),
             decoration: const PageDecoration(
               pageColor: Colors.white,
               bodyTextStyle: TextStyle(fontSize: 18.0),
@@ -50,8 +52,14 @@ class OnBoardingPage extends StatelessWidget {
           ));
         },
         showSkipButton: true,
-        skip: const Text("Skip",style: TextStyle(fontSize: 20),),
-        done: const Text("Done",style: TextStyle(fontSize: 20),),
+        skip: const Text(
+          "Skip",
+          style: TextStyle(fontSize: 20),
+        ),
+        done: const Text(
+          "Done",
+          style: TextStyle(fontSize: 20),
+        ),
         next: const Icon(Icons.arrow_forward),
         dotsDecorator: DotsDecorator(
           size: const Size(10.0, 10.0),

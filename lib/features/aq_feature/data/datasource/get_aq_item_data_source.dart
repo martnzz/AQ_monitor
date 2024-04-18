@@ -11,7 +11,7 @@ import '../models/country_model.dart';
 const String apiKey = 'd9e8faf9-f75a-40a8-9d5b-5a7222a1d019';
 
 abstract class GetAqItemDataSource {
-  Future<GetAqItemModel?> getClosestAqItem();
+  Future<GetAqItemModel?> getClosestAqItem(double lan, double lon);
   Future<GetAqItemModel?> getSpecifiedAqItem(
       String city, String country, String state);
   Future<GetCountriesModel> getCountries();
@@ -25,9 +25,10 @@ class GetAqItemDataSourceImpl implements GetAqItemDataSource {
   GetAqItemDataSourceImpl({required this.client});
 
   @override
-  Future<GetAqItemModel?> getClosestAqItem() async {
+  Future<GetAqItemModel?> getClosestAqItem(double lat, double lon) async {
     final response = await client.get(
-        Uri.parse('https://api.airvisual.com/v2/nearest_city?key=$apiKey'),
+        Uri.parse(
+            'http://api.airvisual.com/v2/nearest_city?lat=$lat&lon=$lon&key=$apiKey'),
         headers: {
           'Content-Type': 'application/json',
         });

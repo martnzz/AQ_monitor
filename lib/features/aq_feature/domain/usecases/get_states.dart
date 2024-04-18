@@ -6,7 +6,6 @@ import '../../../../core/error/failures.dart';
 import '../../../../core/usecases/usecase.dart';
 import '../repositories/aq_repository.dart';
 
-
 class GetStates implements UseCase<StateItem?, StateParams> {
   final AqItemRepository repository;
 
@@ -17,6 +16,7 @@ class GetStates implements UseCase<StateItem?, StateParams> {
     return await repository.getStates(params.country);
   }
 }
+
 class StateParams extends Equatable {
   final String country;
   const StateParams({required this.country});

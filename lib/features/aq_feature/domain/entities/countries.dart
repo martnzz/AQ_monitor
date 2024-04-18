@@ -6,7 +6,6 @@ class CountryItem {
     required this.status,
     required this.data,
   });
-
 }
 
 class Countries {
@@ -15,5 +14,4 @@ class Countries {
   Countries({
     required this.country,
   });
-
 }

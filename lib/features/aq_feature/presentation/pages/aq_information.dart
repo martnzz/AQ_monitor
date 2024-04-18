@@ -22,6 +22,7 @@ class AqInformationPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           aqItem.data!.city,
           style: const TextStyle(fontWeight: FontWeight.bold),
@@ -81,7 +82,6 @@ class AqInformationPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-
                 Text(
                   '${"humidity".tr()}: ${aqItem.data!.current.weather.hu} %',
                   style: const TextStyle(fontSize: 17.0),

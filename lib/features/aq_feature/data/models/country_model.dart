@@ -7,7 +7,8 @@ class GetCountriesModel extends CountryItem {
     final String status = jsonData['status'];
 
     final dynamic countryData = jsonData['data'];
-    final List<Countries> countries = List<Countries>.from(countryData.map((countryData) => Countries(country: countryData['country'])));
+    final List<Countries> countries = List<Countries>.from(countryData
+        .map((countryData) => Countries(country: countryData['country'])));
 
     final countryItem = GetCountriesModel(status: status, data: countries);
     return countryItem;

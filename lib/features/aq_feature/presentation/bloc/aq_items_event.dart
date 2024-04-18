@@ -6,7 +6,12 @@ abstract class AqItemsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetClosestAqItemEvent extends AqItemsEvent {}
+class GetClosestAqItemEvent extends AqItemsEvent {
+  final double lat;
+  final double lon;
+
+  const GetClosestAqItemEvent({required this.lat, required this.lon});
+}
 
 class GetSpecifiedAqItemEvent extends AqItemsEvent {
   final String city;

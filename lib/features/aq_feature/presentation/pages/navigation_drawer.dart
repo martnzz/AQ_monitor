@@ -17,20 +17,17 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-
-      ),
+      appBar: AppBar(),
       body: ListView(
-          children: const [
-            SettingsListTile(),
-            Divider(),
-            LanguageListTile(),
-            Divider(),
+        children: const [
+          SettingsListTile(),
+          Divider(),
+          LanguageListTile(),
+          Divider(),
           AboutWidget(),
-            Divider(),
-          ],
-        ),
-
+          Divider(),
+        ],
+      ),
     );
   }
 }

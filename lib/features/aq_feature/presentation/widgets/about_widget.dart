@@ -18,7 +18,10 @@ class AboutWidget extends StatelessWidget {
         ),
       ),
       onTap: () {
-        showAboutDialog(context: context,applicationName: 'aq_monitor', applicationVersion: 'Version: 1.0.3');
+        showAboutDialog(
+            context: context,
+            applicationName: 'aq_monitor',
+            applicationVersion: '${"version".tr()}: 1.0.3');
       },
     );
   }

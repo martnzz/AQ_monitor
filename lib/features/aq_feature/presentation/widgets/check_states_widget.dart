@@ -8,7 +8,7 @@ class CheckStates extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget okButton = TextButton(
       child: const Text('Ok'),
-      onPressed: () { },
+      onPressed: () {},
     );
     return AlertDialog(
       title: Text("states".tr()),

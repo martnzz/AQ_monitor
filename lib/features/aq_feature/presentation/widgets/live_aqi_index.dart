@@ -9,7 +9,6 @@ class LiveAqiIndexText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       color: pollutionColor,
       height: 100,
@@ -22,7 +21,8 @@ class LiveAqiIndexText extends StatelessWidget {
               '${"aqi_index".tr()}: $index',
               style: TextStyle(color: pollutionTextColor, fontSize: 25),
             ),
-            Text(getPollutionText(index).tr(), style: TextStyle(color: pollutionTextColor,fontSize: 25)),
+            Text(getPollutionText(index).tr(),
+                style: TextStyle(color: pollutionTextColor, fontSize: 25)),
           ],
         ),
       ),

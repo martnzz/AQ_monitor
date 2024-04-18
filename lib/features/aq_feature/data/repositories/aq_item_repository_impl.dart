@@ -17,10 +17,11 @@ class GetAqItemRepositoryImpl implements AqItemRepository {
       {required this.dataSource, required this.networkInfo});
 
   @override
-  Future<Either<Failure, Item?>> getClosestAqItem() async {
+  Future<Either<Failure, Item?>> getClosestAqItem(
+      double lat, double lon) async {
     try {
       if (await networkInfo.isConnected) {
-        final item = await dataSource.getClosestAqItem();
+        final item = await dataSource.getClosestAqItem(lat, lon);
         return Right(item);
       } else {
         return Left(NetworkFailure());
@@ -31,13 +32,14 @@ class GetAqItemRepositoryImpl implements AqItemRepository {
   }
 
   @override
-  Future<Either<Failure, Item?>> getSpecifiedAqItem(String city, String country, String state) async {
+  Future<Either<Failure, Item?>> getSpecifiedAqItem(
+      String city, String country, String state) async {
     try {
       if (await networkInfo.isConnected) {
-        final item = await dataSource.getSpecifiedAqItem(city,country,state);
-        if(item !=null){
-        return Right(item);}
-        else {
+        final item = await dataSource.getSpecifiedAqItem(city, country, state);
+        if (item != null) {
+          return Right(item);
+        } else {
           return Left(DataFailure());
         }
       } else {
@@ -49,7 +51,8 @@ class GetAqItemRepositoryImpl implements AqItemRepository {
   }
 
   @override
-  Future<Either<Failure, CityItem?>> getCities(String country, String state) async {
+  Future<Either<Failure, CityItem?>> getCities(
+      String country, String state) async {
     try {
       if (await networkInfo.isConnected) {
         final cityItem = await dataSource.getCities(country, state);
@@ -90,4 +93,3 @@ class GetAqItemRepositoryImpl implements AqItemRepository {
     }
   }
 }
-

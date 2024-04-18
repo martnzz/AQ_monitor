@@ -10,7 +10,8 @@ class GetCityModel extends CityItem {
     if (status == 'fail') {
       return null;
     } else {
-      final List<Cities> cities = List<Cities>.from(cityData.map((cityJson) => Cities(city: cityJson['city'])));
+      final List<Cities> cities = List<Cities>.from(
+          cityData.map((cityJson) => Cities(city: cityJson['city'])));
       final cityItem = GetCityModel(status: status, data: cities);
       return cityItem;
     }

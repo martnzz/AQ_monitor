@@ -1,3 +1,5 @@
+import 'package:aq_monitor/core/error/failures.dart';
+import 'package:aq_monitor/core/util/show_snackbar.dart';
 import 'package:aq_monitor/features/aq_feature/presentation/bloc/aq_items_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -97,23 +99,30 @@ class _SetupControlsState extends State<SetupControls> {
   }
 
   Future<void> dispatchClosestCity() async {
+    bool serviceEnabled;
+    showInSnackBar('loading'.tr(), context);
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
     }
+    serviceEnabled= await Geolocator.isLocationServiceEnabled();
+    if(serviceEnabled){
+      if (permission == LocationPermission.whileInUse ||
+          permission == LocationPermission.always) {
+        try {
+          Position position = await Geolocator.getCurrentPosition(
+              desiredAccuracy: LocationAccuracy.high);
 
-    if (permission == LocationPermission.whileInUse ||
-        permission == LocationPermission.always) {
-      try {
-        Position position = await Geolocator.getCurrentPosition(
-            desiredAccuracy: LocationAccuracy.high);
-
-        BlocProvider.of<AqItemsBloc>(context).add(GetClosestAqItemEvent(
-            lat: position.latitude, lon: position.longitude));
-      } catch (e) {
-        throw Exception;
+          BlocProvider.of<AqItemsBloc>(context).add(GetClosestAqItemEvent(
+              lat: position.latitude, lon: position.longitude));
+        } catch (e) {
+          throw Exception();
+        }
       }
+    }else{
+      showInSnackBar('no_permission'.tr(), context);
     }
+
   }
 
   void dispatchSpecifiedCity() {

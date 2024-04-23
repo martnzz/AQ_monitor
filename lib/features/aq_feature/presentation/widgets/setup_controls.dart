@@ -81,7 +81,7 @@ class _SetupControlsState extends State<SetupControls> {
           ),
           const SizedBox(height: 12),
           ElevatedButton(
-            onPressed: dispatchClosestCity,
+            onPressed: () => _SetupControlsState().dispatchClosestCity(context),
             style: ElevatedButton.styleFrom(
               minimumSize: const Size.fromHeight(50),
               backgroundColor: Theme.of(context).primaryColor,
@@ -97,31 +97,36 @@ class _SetupControlsState extends State<SetupControls> {
     );
   }
 
-  Future<void> dispatchClosestCity() async {
+  Future<void> dispatchClosestCity(BuildContext context) async {
     bool serviceEnabled;
     showInSnackBar('loading'.tr(), context);
+
     LocationPermission permission = await Geolocator.checkPermission();
+
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
     }
-    serviceEnabled= await Geolocator.isLocationServiceEnabled();
-    if(serviceEnabled){
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+
+    if (serviceEnabled) {
       if (permission == LocationPermission.whileInUse ||
           permission == LocationPermission.always) {
         try {
           Position position = await Geolocator.getCurrentPosition(
               desiredAccuracy: LocationAccuracy.high);
-
-          BlocProvider.of<AqItemsBloc>(context).add(GetClosestAqItemEvent(
-              lat: position.latitude, lon: position.longitude));
+          if (context.mounted) {
+            BlocProvider.of<AqItemsBloc>(context).add(GetClosestAqItemEvent(
+                lat: position.latitude, lon: position.longitude));
+          }
         } catch (e) {
           throw Exception();
         }
       }
-    }else{
-      showInSnackBar('no_permission'.tr(), context);
+    } else {
+      if (context.mounted) {
+        showInSnackBar('no_permission'.tr(), context);
+      }
     }
-
   }
 
   void dispatchSpecifiedCity() {

@@ -19,6 +19,7 @@ class SettingsListTile extends StatelessWidget {
         ),
       ),
       onTap: () {
+        Navigator.of(context).pop();
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const SetupPage()));
       },

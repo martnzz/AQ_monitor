@@ -79,12 +79,16 @@ flutter:
     - assets/images/02d.png
     - assets/images/02n.png
     - assets/images/03d.png
+    - assets/images/03n.png
     - assets/images/04d.png
     - assets/images/04n.png
     - assets/images/09d.png
     - assets/images/10d.png
+    - assets/images/10n.png
     - assets/images/11d.png
+    - assets/images/11n.png
     - assets/images/13d.png
+    - assets/images/13n.png
     - assets/images/50d.png
     - assets/images/setup_page.png
     - assets/images/aqi_info_page.png

@@ -24,7 +24,6 @@ Color getPollutionColor(int index) {
 Color getPollutionTextColor(int index) {
   if (index > 0 && index <= 50) {
     pollutionTextColor = Colors.black;
-    pollutionText = "good";
   } else if (index > 50 && index <= 100) {
     pollutionTextColor = Colors.black;
   } else if (index > 100 && index <= 150) {

@@ -52,13 +52,13 @@ class OnBoardingPage extends StatelessWidget {
           ));
         },
         showSkipButton: true,
-        skip: const Text(
-          "Skip",
-          style: TextStyle(fontSize: 20),
+        skip: Text(
+          "skip".tr(),
+          style: const TextStyle(fontSize: 20),
         ),
-        done: const Text(
-          "Done",
-          style: TextStyle(fontSize: 20),
+        done: Text(
+          "done".tr(),
+          style: const TextStyle(fontSize: 20),
         ),
         next: const Icon(Icons.arrow_forward),
         dotsDecorator: DotsDecorator(

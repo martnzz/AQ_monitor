@@ -32,6 +32,20 @@ class GetAqItemRepositoryImpl implements AqItemRepository {
   }
 
   @override
+  Future<Either<Failure, Item?>> getNotificationAqItem() async {
+    try {
+      if (await networkInfo.isConnected) {
+        final item = await dataSource.getNotificationAqItem();
+        return Right(item);
+      } else {
+        return Left(NetworkFailure());
+      }
+    } catch (e) {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
   Future<Either<Failure, Item?>> getSpecifiedAqItem(
       String city, String country, String state) async {
     try {

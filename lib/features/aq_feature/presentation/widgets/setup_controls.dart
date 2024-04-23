@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 
-import '../../../../core/notification.dart';
-
 class SetupControls extends StatefulWidget {
   const SetupControls({super.key});
 
@@ -93,12 +91,6 @@ class _SetupControlsState extends State<SetupControls> {
               style: const TextStyle(fontSize: 16),
             ),
           ),
-          ElevatedButton(
-              onPressed: () {
-                NotificationService()
-                    .showNotification(title: 'ASD', body: 'AAAA');
-              },
-              child: const Text('Noti'))
         ],
       ),
     );

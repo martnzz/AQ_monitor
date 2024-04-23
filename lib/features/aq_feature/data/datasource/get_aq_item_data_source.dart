@@ -12,6 +12,7 @@ const String apiKey = 'd9e8faf9-f75a-40a8-9d5b-5a7222a1d019';
 
 abstract class GetAqItemDataSource {
   Future<GetAqItemModel?> getClosestAqItem(double lan, double lon);
+  Future<GetAqItemModel?> getNotificationAqItem();
   Future<GetAqItemModel?> getSpecifiedAqItem(
       String city, String country, String state);
   Future<GetCountriesModel> getCountries();
@@ -104,6 +105,22 @@ class GetAqItemDataSourceImpl implements GetAqItemDataSource {
       final item = json.decode(response.body);
       final aqStatesModel = GetStateModel.fromJson(item);
       return aqStatesModel;
+    } else {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<GetAqItemModel?> getNotificationAqItem() async {
+    final response = await client.get(
+        Uri.parse('http://api.airvisual.com/v2/nearest_city?key=$apiKey'),
+        headers: {
+          'Content-Type': 'application/json',
+        });
+    if (response.statusCode == 200) {
+      final item = json.decode(response.body);
+      final aqItemModel = GetAqItemModel.fromJson(item);
+      return aqItemModel;
     } else {
       throw ServerException();
     }

@@ -13,9 +13,7 @@ class SetupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-      ),
+      appBar: AppBar(),
       body: BlocProvider(
         create: (context) => sl<AqItemsBloc>(),
         child: BlocListener<AqItemsBloc, AqItemsState>(

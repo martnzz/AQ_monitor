@@ -8,12 +8,13 @@ class NotificationService {
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin>()?.requestNotificationsPermission();
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.requestNotificationsPermission();
   }
 
   Future<void> initNotification() async {
     const initializationSettingsAndroid =
-    AndroidInitializationSettings('@mipmap/ic_launcher');
+        AndroidInitializationSettings('@mipmap/ic_launcher');
     const initializationSettings = InitializationSettings(
       android: initializationSettingsAndroid,
     );
@@ -31,6 +32,10 @@ class NotificationService {
   Future<void> showNotification(
       {int id = 0, String? title, String? body, String? payload}) async {
     await flutterLocalNotificationsPlugin.show(
-        id, title, body, notificationDetails());
+      id,
+      title,
+      body,
+      notificationDetails(),
+    );
   }
 }

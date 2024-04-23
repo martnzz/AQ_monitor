@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:aq_monitor/features/aq_feature/presentation/pages/navigation_drawer.dart';
+import '../../../../core/util/format_date.dart';
 import '../../domain/entities/aq_item.dart';
 import '../widgets/aqi_color.dart';
 import '../widgets/live_aqi_index.dart';
@@ -12,12 +13,6 @@ class AqInformationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String dateString = aqItem.data!.current.weather.ts;
-    List<String> parts = dateString.split('T');
-    String datePart = parts[0];
-    String timePart = parts[1].split('.')[0];
-    String formattedDate = '$datePart $timePart';
-
     final weatherIcon = aqItem.data!.current.weather.ic;
 
     return Scaffold(
@@ -57,7 +52,7 @@ class AqInformationPage extends StatelessWidget {
             ),
             const SizedBox(height: 8.0),
             Text(
-              formattedDate,
+              formatDate(aqItem.data!.current.weather.ts),
               style: const TextStyle(fontSize: 18.0),
             ),
             const SizedBox(height: 16.0),

@@ -13,6 +13,13 @@ class GetClosestAqItemEvent extends AqItemsEvent {
   const GetClosestAqItemEvent({required this.lat, required this.lon});
 }
 
+class CheckAqEvent extends AqItemsEvent {
+  final double lat;
+  final double lon;
+
+  const CheckAqEvent({required this.lat, required this.lon});
+}
+
 class GetSpecifiedAqItemEvent extends AqItemsEvent {
   final String city;
   final String state;
@@ -36,3 +43,5 @@ class GetCitiesEvent extends AqItemsEvent {
 
   const GetCitiesEvent({required this.country, required this.state});
 }
+
+class GetNotificationItemEvent extends AqItemsEvent {}

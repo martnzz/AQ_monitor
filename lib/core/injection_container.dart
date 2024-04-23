@@ -4,6 +4,7 @@ import 'package:aq_monitor/features/aq_feature/data/repositories/aq_item_reposit
 import 'package:aq_monitor/features/aq_feature/domain/usecases/get_cities.dart';
 import 'package:aq_monitor/features/aq_feature/domain/usecases/get_closest_aq_item.dart';
 import 'package:aq_monitor/features/aq_feature/domain/usecases/get_countries.dart';
+import 'package:aq_monitor/features/aq_feature/domain/usecases/get_notification_aq_item.dart';
 import 'package:aq_monitor/features/aq_feature/domain/usecases/get_specified_aq_item.dart';
 import 'package:aq_monitor/features/aq_feature/domain/usecases/get_states.dart';
 import 'package:aq_monitor/features/aq_feature/presentation/bloc/aq_items_bloc.dart';
@@ -22,7 +23,8 @@ Future<void> init() async {
       getSpecifiedAqItem: sl(),
       getCountries: sl(),
       getStates: sl(),
-      getCities: sl()));
+      getCities: sl(),
+      getNotificationItem: sl()));
 
   // repository
   sl.registerLazySingleton<AqItemRepository>(
@@ -35,6 +37,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetStates(sl()));
   sl.registerLazySingleton(() => GetCities(sl()));
   sl.registerLazySingleton(() => GetSpecifiedAqItem(sl()));
+  sl.registerLazySingleton(() => GetNotificationAqItem(sl()));
 
   // data source
   sl.registerLazySingleton<GetAqItemDataSource>(

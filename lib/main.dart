@@ -7,9 +7,10 @@ import 'features/aq_feature/presentation/bloc/aq_items_bloc.dart';
 import 'features/aq_feature/presentation/pages/onboarding_page.dart';
 import 'package:background_fetch/background_fetch.dart';
 
+String? hour;
+
 @pragma('vm:entry-point')
 void backgroundFetchHeadlessTask(String taskId) async {
-  String? hour;
   int? aqiIndex;
   final aqItemsBloc = di.sl<AqItemsBloc>();
   aqItemsBloc.add(GetNotificationItemEvent());
@@ -22,7 +23,6 @@ void backgroundFetchHeadlessTask(String taskId) async {
             title: 'Air Quality Changed!', body: 'AQI Index: $aqiIndex');
         BackgroundFetch.finish(taskId);
       } else {
-        print('asd.com');
         BackgroundFetch.finish(taskId);
       }
     }
@@ -43,6 +43,7 @@ void main() async {
       enableHeadless: true,
     ),
     (String taskId) async {
+
       backgroundFetchHeadlessTask(taskId);
     },
   );

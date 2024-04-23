@@ -19,10 +19,12 @@ class LiveAqiIndexText extends StatelessWidget {
           children: [
             Text(
               '${"aqi_index".tr()}: $index',
-              style: TextStyle(color: pollutionTextColor, fontSize: 25),
+              style:
+                  TextStyle(color: getPollutionTextColor(index), fontSize: 25),
             ),
             Text(getPollutionText(index).tr(),
-                style: TextStyle(color: pollutionTextColor, fontSize: 25)),
+                style: TextStyle(
+                    color: getPollutionTextColor(index), fontSize: 25)),
           ],
         ),
       ),

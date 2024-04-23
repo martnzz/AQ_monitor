@@ -23,17 +23,17 @@ Color getPollutionColor(int index) {
 
 Color getPollutionTextColor(int index) {
   if (index > 0 && index <= 50) {
-    pollutionTextColor = Colors.black;
+    return pollutionTextColor = Colors.black;
   } else if (index > 50 && index <= 100) {
-    pollutionTextColor = Colors.black;
+    return pollutionTextColor = Colors.black;
   } else if (index > 100 && index <= 150) {
-    pollutionTextColor = Colors.black;
+    return pollutionTextColor = Colors.black;
   } else if (index > 150 && index <= 200) {
-    pollutionTextColor = Colors.white;
+    return pollutionTextColor = Colors.white;
   } else if (index > 200 && index <= 250) {
-    pollutionTextColor = Colors.white;
+    return pollutionTextColor = Colors.white;
   } else if (index > 250 && index <= 300) {
-    pollutionTextColor = Colors.white;
+    return pollutionTextColor = Colors.white;
   }
   return pollutionTextColor = Colors.white;
 }

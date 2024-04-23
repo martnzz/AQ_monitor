@@ -4,16 +4,11 @@ import 'package:flutter/material.dart';
 
 import '../widgets/language_list_tile.dart';
 
-class NavigationDrawerWidget extends StatefulWidget {
+class NavigationDrawerWidget extends StatelessWidget {
   const NavigationDrawerWidget({
     super.key,
   });
 
-  @override
-  State<NavigationDrawerWidget> createState() => _NavigationDrawerWidgetState();
-}
-
-class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

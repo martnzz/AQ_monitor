@@ -17,7 +17,6 @@ class AqInformationPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         title: Text(
           aqItem.data!.city,
           style: const TextStyle(fontWeight: FontWeight.bold),

@@ -1,4 +1,3 @@
-import 'package:aq_monitor/core/error/failures.dart';
 import 'package:aq_monitor/core/util/show_snackbar.dart';
 import 'package:aq_monitor/features/aq_feature/presentation/bloc/aq_items_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';

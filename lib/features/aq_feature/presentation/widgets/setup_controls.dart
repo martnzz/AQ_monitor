@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 
+import '../../../../main.dart';
+
 class SetupControls extends StatefulWidget {
   const SetupControls({super.key});
 
@@ -100,9 +102,6 @@ class _SetupControlsState extends State<SetupControls> {
   Future<void> dispatchClosestCity(BuildContext context) async {
     bool serviceEnabled;
     showInSnackBar('loading'.tr(), context);
-
-    LocationPermission permission = await Geolocator.checkPermission();
-
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
     }

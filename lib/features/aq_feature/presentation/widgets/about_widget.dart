@@ -1,9 +1,36 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
-class AboutWidget extends StatelessWidget {
+class AboutWidget extends StatefulWidget {
   const AboutWidget({super.key});
 
+  @override
+  State<AboutWidget> createState() => _AboutWidgetState();
+}
+
+class _AboutWidgetState extends State<AboutWidget> {
+  PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+    buildSignature: 'Unknown',
+    installerStore: 'Unknown',
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    _initPackageInfo();
+  }
+
+  Future<void> _initPackageInfo() async {
+    final info = await PackageInfo.fromPlatform();
+    setState(() {
+      _packageInfo = info;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -20,9 +47,10 @@ class AboutWidget extends StatelessWidget {
       onTap: () {
         showAboutDialog(
             context: context,
-            applicationName: 'aq_monitor',
-            applicationVersion: '${"version".tr()}: 1.0.3');
+            applicationName: _packageInfo.appName,
+            applicationVersion: _packageInfo.version);
       },
     );
   }
+
 }

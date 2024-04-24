@@ -8,7 +8,6 @@ import '../entities/state.dart';
 
 abstract class AqItemRepository {
   Future<Either<Failure, Item?>> getClosestAqItem(double lat, double lon);
-  Future<Either<Failure, Item?>> getNotificationAqItem();
   Future<Either<Failure, Item?>> getSpecifiedAqItem(
       String city, String country, String state);
   Future<Either<Failure, CountryItem?>> getCountries();

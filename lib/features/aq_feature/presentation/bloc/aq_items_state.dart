@@ -38,14 +38,6 @@ class CitiesLoaded extends AqItemsState {
   const CitiesLoaded({required this.city});
 }
 
-class NotificationLoaded extends AqItemsState {
-  final Item? item;
-
-  const NotificationLoaded({required this.item});
-
-  @override
-  List<Object> get props => [item!];
-}
 
 class Error extends AqItemsState {
   final String message;

@@ -44,4 +44,3 @@ class GetCitiesEvent extends AqItemsEvent {
   const GetCitiesEvent({required this.country, required this.state});
 }
 
-class GetNotificationItemEvent extends AqItemsEvent {}

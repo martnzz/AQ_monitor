@@ -13,7 +13,7 @@
   "temperature" : "Hőmérséklet",
   "humidity" : "Páratartalom",
   "wind_speed" : "Szélsebesség",
-  "pressure" : "Nyomás",
+  "pressure" : "Légnyomás",
   "aqi_index" : "Élő AQI Index",
   "good" : "Jó",
   "moderate" : "Közepes",
@@ -32,5 +32,7 @@
   "nav_title": "Navigációs oldal",
   "nav_body": "A Beállítások menüpont elindítja a Beállítási oldalt vagy egy hasonló oldalt, amelyen lehetőség nyílik a levegőminőségi adatok helyének kiválasztására.\nA Nyelv menüpont lehetővé teszi a nyelvek menet közbeni váltását.\nA Névjegy menüpont egy egyszerű párbeszédpanelt jelenít meg az alkalmazás nevével, a verzióinformációkkal és a nyílt forráskódú licencek ellenőrzésének lehetőségével.",
  "version" : "Verzió",
- "no_permission" : "Nincs engedély a tartózkodási helyhez!"
+ "no_permission" : "Nincs engedély a tartózkodási helyhez!",
+  "states" : "Államok",
+  "cities" :"Városok"
 }

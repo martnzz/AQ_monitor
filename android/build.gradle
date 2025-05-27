@@ -6,7 +6,6 @@ allprojects {
         maven { url "${project(':background_fetch').projectDir}/libs" }
     }
 }
-
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"

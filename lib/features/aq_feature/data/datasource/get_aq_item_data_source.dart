@@ -8,7 +8,7 @@ import '../../../../core/error/exception.dart';
 import '../models/city_model.dart';
 import '../models/country_model.dart';
 
-const String apiKey = 'd9e8faf9-f75a-40a8-9d5b-5a7222a1d019';
+const String apiKey = '2322f725-659c-49bb-8a37-8df9904f64fc';
 
 abstract class GetAqItemDataSource {
   Future<GetAqItemModel?> getClosestAqItem(double lan, double lon);
@@ -34,9 +34,14 @@ class GetAqItemDataSourceImpl implements GetAqItemDataSource {
         });
     if (response.statusCode == 200) {
       final item = json.decode(response.body);
+      print(response.statusCode);
+
       final aqItemModel = GetAqItemModel.fromJson(item);
       return aqItemModel;
+
     } else {
+      print(response.statusCode);
+
       throw ServerException();
     }
   }
@@ -68,10 +73,12 @@ class GetAqItemDataSourceImpl implements GetAqItemDataSource {
           'Content-Type': 'application/json',
         });
     if (response.statusCode == 200) {
+
       final item = json.decode(response.body);
       final aqCitiesModel = GetCityModel.fromJson(item);
       return aqCitiesModel;
     } else {
+
       throw ServerException();
     }
   }

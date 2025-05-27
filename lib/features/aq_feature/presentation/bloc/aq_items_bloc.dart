@@ -70,7 +70,6 @@ class AqItemsBloc extends Bloc<AqItemsEvent, AqItemsState> {
     });
 
     on<GetStatesEvent>((event, emit) async {
-      emit(Loading());
       final inputEither = await getStates(StateParams(country: event.country));
       inputEither.fold(
           (failure) => emit(Error(message: _mapFailureToMessage(failure).tr())),

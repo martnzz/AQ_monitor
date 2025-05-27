@@ -17,7 +17,7 @@ void backgroundFetchHeadlessTask(String taskId) async {
   final aqItemsBloc = di.sl<AqItemsBloc>();
   if (permission == LocationPermission.always) {
     Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
+        locationSettings: LocationSettings(accuracy: LocationAccuracy.best));
     aqItemsBloc.add(
         GetClosestAqItemEvent(lat: position.latitude, lon: position.longitude));
     aqItemsBloc.stream.listen((state) {
@@ -43,13 +43,11 @@ void backgroundFetchHeadlessTask(String taskId) async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize BackgroundFetch
   BackgroundFetch.registerHeadlessTask(backgroundFetchHeadlessTask);
 
-  // Configure BackgroundFetch
   await BackgroundFetch.configure(
     BackgroundFetchConfig(
-      minimumFetchInterval: 15, // Fetch interval in minutes
+      minimumFetchInterval: 15,
       stopOnTerminate: false,
       enableHeadless: true,
     ),
@@ -58,7 +56,6 @@ void main() async {
     },
   );
 
-  // Initialize other services
   NotificationService().initNotification();
   await di.init();
   await EasyLocalization.ensureInitialized();

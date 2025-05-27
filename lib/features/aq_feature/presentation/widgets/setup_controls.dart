@@ -22,79 +22,85 @@ class _SetupControlsState extends State<SetupControls> {
   String? inputState;
   String? inputCity;
   bool isButtonDisabled = true;
+  bool isStateIconDisabled = true;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          TextField(
-            controller: countryController,
-            textInputAction: TextInputAction.next,
-            decoration: InputDecoration(
-              labelText: 'country'.tr(),
-              border: const OutlineInputBorder(),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TextField(
+              controller: countryController,
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(
+                labelText: 'country'.tr(),
+                border: const OutlineInputBorder(),
+              ),
+              onChanged: (value) {
+                inputCountry = value;
+                checkButtonState();
+                checkStateIconState();
+              },
             ),
-            onChanged: (value) {
-              inputCountry = value;
-              checkButtonState();
-            },
-          ),
-          const SizedBox(height: 12),
-          TextField(
-            controller: stateController,
-            textInputAction: TextInputAction.next,
-            decoration: InputDecoration(
-              labelText: 'state'.tr(),
-              border: const OutlineInputBorder(),
+            const SizedBox(height: 12),
+            TextField(
+              controller: stateController,
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(
+                labelText: 'state'.tr(),
+                border: const OutlineInputBorder(),
+              ),
+              onChanged: (value) {
+                inputState = value;
+                checkButtonState();
+              },
             ),
-            onChanged: (value) {
-              inputState = value;
-              checkButtonState();
-            },
-          ),
-          const SizedBox(height: 12),
-          TextField(
-            controller: cityController,
-            textInputAction: TextInputAction.next,
-            decoration: InputDecoration(
-              labelText: 'city'.tr(),
-              border: const OutlineInputBorder(),
+            const SizedBox(height: 12),
+
+            TextField(
+              controller: cityController,
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(
+                labelText: 'city'.tr(),
+                border: const OutlineInputBorder(),
+              ),
+              onChanged: (value) {
+                inputCity = value;
+                checkButtonState();
+              },
             ),
-            onChanged: (value) {
-              inputCity = value;
-              checkButtonState();
-            },
-          ),
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: isButtonDisabled ? null : dispatchSpecifiedCity,
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size.fromHeight(50),
-              backgroundColor: Theme.of(context).primaryColor,
-              foregroundColor: Theme.of(context).colorScheme.onPrimary,
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: isButtonDisabled ? null : dispatchSpecifiedCity,
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size.fromHeight(50),
+                backgroundColor: Theme.of(context).primaryColor,
+                foregroundColor: Theme.of(context).colorScheme.onPrimary,
+              ),
+              child: Text(
+                'specified_city'.tr(),
+                style: const TextStyle(fontSize: 16),
+              ),
             ),
-            child: Text(
-              'specified_city'.tr(),
-              style: const TextStyle(fontSize: 16),
+            const SizedBox(height: 12),
+            ElevatedButton(
+              onPressed: () =>
+                  _SetupControlsState().dispatchClosestCity(context),
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size.fromHeight(50),
+                backgroundColor: Theme.of(context).primaryColor,
+                foregroundColor: Theme.of(context).colorScheme.onPrimary,
+              ),
+              child: Text(
+                'closest_city'.tr(),
+                style: const TextStyle(fontSize: 16),
+              ),
             ),
-          ),
-          const SizedBox(height: 12),
-          ElevatedButton(
-            onPressed: () => _SetupControlsState().dispatchClosestCity(context),
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size.fromHeight(50),
-              backgroundColor: Theme.of(context).primaryColor,
-              foregroundColor: Theme.of(context).colorScheme.onPrimary,
-            ),
-            child: Text(
-              'closest_city'.tr(),
-              style: const TextStyle(fontSize: 16),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -138,11 +144,25 @@ class _SetupControlsState extends State<SetupControls> {
     );
   }
 
+  void dispatchState() {
+    BlocProvider.of<AqItemsBloc>(context).add(
+      GetStatesEvent(
+        country: inputCountry!,
+      ),
+    );
+  }
+
   void checkButtonState() {
     setState(() {
       isButtonDisabled = (inputCountry ?? '').isEmpty ||
           (inputState ?? '').isEmpty ||
           (inputCity ?? '').isEmpty;
+    });
+  }
+
+  void checkStateIconState() {
+    setState(() {
+      isStateIconDisabled = (inputCountry ?? '').isEmpty;
     });
   }
 }

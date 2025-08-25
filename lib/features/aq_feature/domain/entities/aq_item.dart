@@ -1,12 +1,11 @@
 class Item {
   final String status;
-  final Data data;
+  final Data? data;
 
   const Item({
     required this.status,
     required this.data,
   });
-
 }
 
 class Data {
@@ -23,7 +22,6 @@ class Data {
     required this.location,
     required this.current,
   });
-
 }
 
 class Current {
@@ -34,7 +32,6 @@ class Current {
     required this.pollution,
     required this.weather,
   });
-
 }
 
 class Pollution {
@@ -51,7 +48,6 @@ class Pollution {
     required this.aqicn,
     required this.maincn,
   });
-
 }
 
 class Weather {
@@ -72,7 +68,6 @@ class Weather {
     required this.wd,
     required this.ic,
   });
-
 }
 
 class Location {
@@ -83,5 +78,4 @@ class Location {
     required this.type,
     required this.coordinates,
   });
-
 }

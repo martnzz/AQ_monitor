@@ -4,6 +4,9 @@ abstract class Failure extends Equatable {
   @override
   List<Object> get props => [];
 }
+
 class NetworkFailure extends Failure {}
 
 class ServerFailure extends Failure {}
+
+class DataFailure extends Failure {}
